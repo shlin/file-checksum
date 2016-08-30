@@ -1,8 +1,8 @@
-# Project: file-checksum
+# file-checksum
 本專案以 Java 開發用來計算檔案與純文字的Checksum
 
 # Required library
-+ commons-cli-1.3.1.jar
++ commons-cli-1.3.1
 + commons-io-2.5
 
 # Usage
