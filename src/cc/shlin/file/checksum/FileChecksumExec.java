@@ -1,4 +1,4 @@
-package tw.pstar.file;
+package cc.shlin.file.checksum;
 
 import java.io.File;
 import java.security.Security;

@@ -1,4 +1,4 @@
-package tw.pstar.file;
+package cc.shlin.file.checksum;
 
 import java.io.ByteArrayInputStream;
 import java.io.File;
