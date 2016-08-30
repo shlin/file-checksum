@@ -32,6 +32,7 @@ public class FileChecksum {
 
 	public String getChecksumString(File file) throws IOException {
 		StringBuilder sb = new StringBuilder();
+
 		for (byte b : this.getChecksumBytes(file)) {
 			sb.append(String.format("%02X", b));
 		}
@@ -41,6 +42,7 @@ public class FileChecksum {
 
 	public String getChecksumString(String text) throws IOException {
 		StringBuilder sb = new StringBuilder();
+
 		for (byte b : this.getChecksumBytes(text)) {
 			sb.append(String.format("%02X", b));
 		}
@@ -60,7 +62,8 @@ public class FileChecksum {
 
 	private void calcFileChecksum(File file) throws IOException {
 		byte[] buff = new byte[1024];
-		FileInputStream in = new FileInputStream(file);
+
+		InputStream in = new FileInputStream(file);
 		DigestInputStream stream = new DigestInputStream(in, this.digest);
 
 		while (stream.read(buff) != -1)
