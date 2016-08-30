@@ -78,7 +78,7 @@ public class FileChecksumExec {
 	}
 
 	private static void printHelp(Options options) {
-		new HelpFormatter().printHelp("java -jar <filename>.jar [OPTION]", options);
+		new HelpFormatter().printHelp("java -jar file-checksum.jar [OPTION]", options);
 		System.exit(0);
 	}
 }
