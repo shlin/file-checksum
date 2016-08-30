@@ -56,7 +56,7 @@ public class FileChecksum {
 	}
 
 	public byte[] getChecksumBytes(String text) throws IOException {
-		this.calcFileChecksum(text);
+		this.calcTextChecksum(text);
 		return this.digest.digest();
 	}
 
@@ -72,7 +72,7 @@ public class FileChecksum {
 		in.close();
 	}
 
-	private void calcFileChecksum(String text) throws IOException {
+	private void calcTextChecksum(String text) throws IOException {
 		byte[] buff = new byte[1024];
 
 		InputStream in = new ByteArrayInputStream(text.getBytes());
