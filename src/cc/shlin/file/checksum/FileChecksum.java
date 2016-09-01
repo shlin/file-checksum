@@ -63,6 +63,7 @@ public class FileChecksum {
 	private void calcFileChecksum(File file) throws IOException {
 		byte[] buff = new byte[1024];
 
+		this.reset();
 		InputStream in = new FileInputStream(file);
 		DigestInputStream stream = new DigestInputStream(in, this.digest);
 
@@ -75,6 +76,7 @@ public class FileChecksum {
 	private void calcTextChecksum(String text) throws IOException {
 		byte[] buff = new byte[1024];
 
+		this.reset();
 		InputStream in = new ByteArrayInputStream(text.getBytes());
 		DigestInputStream stream = new DigestInputStream(in, this.digest);
 
