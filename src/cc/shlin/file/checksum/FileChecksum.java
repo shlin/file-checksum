@@ -14,8 +14,16 @@ import java.util.Set;
 public class FileChecksum {
 	private MessageDigest digest;
 
-	public FileChecksum(String algorithm) throws NoSuchAlgorithmException {
-		digest = MessageDigest.getInstance(this.getSupportedAlgorithm().contains(algorithm) ? algorithm : "MD5");
+	public FileChecksum(String algorithm) {
+		try {
+			digest = MessageDigest.getInstance(algorithm);
+		} catch (NoSuchAlgorithmException noAlgorithmEx) {
+			try {
+				digest = MessageDigest.getInstance("MD5");
+			} catch (NoSuchAlgorithmException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 
 	public Set<String> getSupportedAlgorithm() {
