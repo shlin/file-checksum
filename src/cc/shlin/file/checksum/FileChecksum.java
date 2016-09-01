@@ -11,6 +11,10 @@ import java.security.NoSuchAlgorithmException;
 import java.security.Security;
 import java.util.Set;
 
+/**
+ * @author shlin
+ * @see https://github.com/shlin/file-checksum
+ */
 public class FileChecksum {
 	private MessageDigest digest;
 

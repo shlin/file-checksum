@@ -9,6 +9,10 @@ import org.apache.commons.cli.HelpFormatter;
 import org.apache.commons.cli.Option;
 import org.apache.commons.cli.Options;
 
+/**
+ * @author shlin
+ * @see https://github.com/shlin/file-checksum
+ */
 public class FileChecksumExec {
 
 	public static void main(String[] args) throws Exception {
