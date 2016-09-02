@@ -43,58 +43,33 @@ public class FileChecksum {
 	}
 
 	public String getChecksumString(File file) throws IOException {
-		StringBuilder sb = new StringBuilder();
-
-		for (byte b : this.getChecksumBytes(file)) {
-			sb.append(String.format("%02X", b));
-		}
-
-		return sb.toString();
+		this.calcChecksum(new FileInputStream(file));
+		return this.getByteString(this.digest.digest());
 	}
 
 	public String getChecksumString(String text) throws IOException {
+		this.calcChecksum(new ByteArrayInputStream(text.getBytes()));
+		return this.getByteString(this.digest.digest());
+	}
+
+	private void calcChecksum(InputStream in) throws IOException {
+		byte[] buff = new byte[4096];
+
+		this.reset();
+		DigestInputStream stream = new DigestInputStream(in, this.digest);
+
+		while (stream.read(buff) != -1)
+			;
+		stream.close();
+		in.close();
+	}
+
+	private String getByteString(byte[] bytes) {
 		StringBuilder sb = new StringBuilder();
 
-		for (byte b : this.getChecksumBytes(text)) {
+		for (byte b : bytes)
 			sb.append(String.format("%02X", b));
-		}
 
 		return sb.toString();
-	}
-
-	public byte[] getChecksumBytes(File file) throws IOException {
-		this.calcFileChecksum(file);
-		return this.digest.digest();
-	}
-
-	public byte[] getChecksumBytes(String text) throws IOException {
-		this.calcTextChecksum(text);
-		return this.digest.digest();
-	}
-
-	private void calcFileChecksum(File file) throws IOException {
-		byte[] buff = new byte[1024];
-
-		this.reset();
-		InputStream in = new FileInputStream(file);
-		DigestInputStream stream = new DigestInputStream(in, this.digest);
-
-		while (stream.read(buff) != -1)
-			;
-		stream.close();
-		in.close();
-	}
-
-	private void calcTextChecksum(String text) throws IOException {
-		byte[] buff = new byte[1024];
-
-		this.reset();
-		InputStream in = new ByteArrayInputStream(text.getBytes());
-		DigestInputStream stream = new DigestInputStream(in, this.digest);
-
-		while (stream.read(buff) != -1)
-			;
-		stream.close();
-		in.close();
 	}
 }
